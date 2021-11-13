@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>PLAY THE GAME!</title>
+        <link rel='stylesheet' href='/static/styles.css' />
+    </head>
+    <body class="main-page">
+        <p>{{player_one}}</p>
+        <p>{{player_two}}</p>
+        <form method="post" class="main-page">
+            <label for="player">WHICH PLAYER IS HEAVIER?:</label>
+            <select name="player" class="main-page">
+                <option value="one">PLAYER ONE</option>
+                <option value="two">PLAYER TWO</option>
+            </select>
+            <br />
+            <input type="submit" value="Submit" class="main-page">
+        </form>
+    </body>
+</html>

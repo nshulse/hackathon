@@ -1,0 +1,37 @@
+p {
+    color: blue;
+}
+
+.main-page {
+    background-color: coral;
+}
+
+#player2stuff {
+    background-color: blueviolet;
+}
+
+p {
+    font-size: 40px;
+}
+
+label {
+    font-size: 30px;
+}
+
+a {
+    font-size: 32px;
+}
+
+input {
+    font-size: 24px;
+}
+
+select {
+    font-size: 24px;
+}
+
+form {
+    font-size: 24px;
+}
+
+
