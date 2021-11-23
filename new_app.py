@@ -61,26 +61,28 @@ def get_player():
     player_one_id: int = randint(1, 400)
     bball_api_response: Response = get(f"https://www.balldontlie.io/api/v1/players/{player_one_id}")
     bball_api_response_data = bball_api_response.json()
-    #self.weight = bball_api_response_data['weight_pounds']
     big_weight = bball_api_response_data['weight_pounds']
-    #self.name = f"{bball_api_response_data['first_name']} {bball_api_response_data['last_name']}"
     big_name = f"{bball_api_response_data['first_name']} {bball_api_response_data['last_name']}"
-    bball_averages_response: Response = get(f"https://www.balldontlie.io/api/v1/season_averages?player_ids[]={player_one_id}")
+    bball_averages_response: Response = get(f"https://www.balldontlie.io/api/v1/season_averages?season=2020&player_ids[]={player_one_id}")
     bball_averages_data = bball_averages_response.json()
-    #self.stats = bball_averages_data['data'][0]
-    #big_stats = bball_averages_data['data'][0]
     while (bball_averages_data['data']) == []:
         player_one_id: int = randint(1, 400)
         bball_api_response: Response = get(f"https://www.balldontlie.io/api/v1/players/{player_one_id}")
         bball_api_response_data = bball_api_response.json()
-        #self.weight = bball_api_response_data['weight_pounds']
         big_weight = bball_api_response_data['weight_pounds']
-        #self.name = (f"{bball_api_response_data['first_name']} {bball_api_response_data['last_name']}")
         big_name = f"{bball_api_response_data['first_name']} {bball_api_response_data['last_name']}"
-        bball_averages_response: Response = get(f"https://www.balldontlie.io/api/v1/season_averages?player_ids[]={player_one_id}")
+        bball_averages_response: Response = get(f"https://www.balldontlie.io/api/v1/season_averages?season=2020&player_ids[]={player_one_id}")
         bball_averages_data = bball_averages_response.json()
-        #self.stats = bball_averages_data['data'][0]
     big_stats = bball_averages_data['data'][0]
+    while len(big_stats['min']) < 4 or int(big_stats['games_played']) < 20:
+        player_one_id: int = randint(1, 400)
+        bball_api_response: Response = get(f"https://www.balldontlie.io/api/v1/players/{player_one_id}")
+        bball_api_response_data = bball_api_response.json()
+        big_weight = bball_api_response_data['weight_pounds']
+        big_name = f"{bball_api_response_data['first_name']} {bball_api_response_data['last_name']}"
+        bball_averages_response: Response = get(f"https://www.balldontlie.io/api/v1/season_averages?season=2020&player_ids[]={player_one_id}")
+        bball_averages_data = bball_averages_response.json()
+
     return Player(big_name, big_weight, big_stats)
 
 
@@ -148,7 +150,7 @@ x: int = 0
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template('index_new.html')
 
 """@app.route('/game', methods=["GET", "POST"])
 def game():
@@ -320,9 +322,14 @@ def game():
 @app.route('/game', methods=["GET", "POST"])
 def game():
     global player_points, big_question, player_one, player_two
-    player_one = get_player()
-    player_two = get_player()
-    what_question()
+    if request.method == "GET":
+        player_one = get_player()
+        player_two = get_player()
+        what_question()
+        if p1_weight == []:
+            print("player one no data")
+        if p2_weight == []:
+            print("player two no data")
     if request.method == "POST":
         player: str = request.form["player"]
         x = check_answer(player, p1_weight ,p2_weight)
