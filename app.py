@@ -36,12 +36,10 @@ def game():
             p2 = random_player_name()
         p1_weight = int(p1_weight)
         p2_weight = int(p2_weight)
-        print(p1_weight)
     if request.method == "POST":
         player: str = request.form["player"]
         x = check_answer(player, p1_weight ,p2_weight)
         if x == "NICE!":
-            print(p1)
             player_points += 1
             return render_template("result_right.html", player_points=player_points)
         else:
@@ -75,13 +73,13 @@ x: int = randint(1, 400)
 y: int = randint(1, 400)
 bball_api_response: Response = get(f"https://www.balldontlie.io/api/v1/players/{x}")
 bball_api_response_two: Response = get(f"https://www.balldontlie.io/api/v1/players/{y}")
-print(bball_api_response.status_code)
+#print(bball_api_response.status_code)
 bball_api_response_data = bball_api_response.json()
 bball_api_response_data_two = bball_api_response_two.json()
-print(bball_api_response_data)
+#print(bball_api_response_data)
 
 
-player_one: str = "Lebron"
+#player_one: str = "Lebron"
 
 
 
