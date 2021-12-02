@@ -14,3 +14,7 @@ Use of api, functional game, website looks decent
 
 api is very slow and crashes often because it is free. We could import all the api data into a file and make the game much faster and crash less. Could also make the website look better using things like jpegs or images.
 
+
+Update done by Noah Hulse: Made the game include not only weight, but player averages like points, rebounds, turnovers, etc.
+
+New game is run using new_app.py
